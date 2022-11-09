@@ -49,6 +49,19 @@ const ProductPrice = styled(Typography)`
   margin-top: 25px;
 ` as typeof Typography
 
+const getPrice = (price: number, currency: string) => {
+  switch (currency) {
+  case 'USD':
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)
+    
+  case 'EUR':
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' }).format(price * 0.99254026)
+      
+  default:
+    return price
+  }
+}
+
 const Product: FunctionComponent = () => {
   const { currency } = useContext(CurrencyContext)
   const { productId } = useParams()
@@ -75,10 +88,10 @@ const Product: FunctionComponent = () => {
       color="inherit"
       to="/products"
     >
-      Product
+      Products
     </Link>,
     <Typography key="3" color="text.primary">
-      Breadcrumb
+      {data.title}
     </Typography>,
   ]
 
@@ -105,7 +118,7 @@ const Product: FunctionComponent = () => {
               {data.description}
             </Typography>
             <ProductPrice variant="h3" component="div">
-              {currency} {data.price}
+              {getPrice(data.price, currency)}
             </ProductPrice>
           </CardContent>
           <CardActions>
