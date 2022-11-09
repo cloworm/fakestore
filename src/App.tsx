@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FunctionComponent } from 'react'
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom'
+import CssBaseline from '@mui/material/CssBaseline'
+import Container from '@mui/material/Container'
 
-function App() {
+import Home from './pages/Home'
+import Products from './pages/Products'
+import Navbar from './components/Navbar'
+
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CssBaseline />
+      <Router>
+        <Navbar />
+        <Container maxWidth="lg">
+          <Routes>
+            <Route path="" element={<Home />} />
+            <Route path="products" element={<Products />} />
+          </Routes>
+        </Container>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
