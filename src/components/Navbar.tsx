@@ -22,6 +22,15 @@ const NavItems = styled(Box)`
   gap: 10px;
 ` as typeof Box
 
+interface CurrencyOptionProps {
+  isSelected: boolean
+}
+
+const CurrencyOption = styled(Button)<CurrencyOptionProps>`
+  color: #fff;
+  border: ${props => props.isSelected ? '1px solid #fff' : '1px solid transparent'};
+`
+
 const SpaceBetween = styled(Box)`
   width: 100%;
   display: flex;
@@ -60,8 +69,8 @@ const Navbar: FunctionComponent = () => {
               <NavButton component={RouterLink} variant="text" to="products">Products</NavButton>
             </NavItems>
             <Box>
-              <NavButton variant="text" onClick={() => handleCurrencyChange('USD')}>$</NavButton>
-              <NavButton variant="text" onClick={() => handleCurrencyChange('EUR')}>&euro;</NavButton>
+              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('USD')} isSelected={ currency === 'USD'}>USD</CurrencyOption>
+              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('EUR')} isSelected={ currency === 'EUR'}>EUR</CurrencyOption>
             </Box>
           </SpaceBetween>
         </Toolbar>
