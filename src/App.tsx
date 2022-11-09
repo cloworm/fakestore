@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 import Container from '@mui/material/Container'
+import { styled } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Home from './pages/Home'
@@ -21,6 +22,10 @@ export const CurrencyContext = createContext<{ currency: string; setCurrency: Re
   setCurrency: () => { return '' },
 })
 
+const AppContainer = styled(Container)`
+  padding: 50px 0;
+`
+
 const App: FunctionComponent = () => {
   const [currency, setCurrency] = useState('USD')
   const value = useMemo(
@@ -34,7 +39,7 @@ const App: FunctionComponent = () => {
         <CssBaseline />
         <Router>
           <Navbar />
-          <Container maxWidth="lg">
+          <AppContainer maxWidth="lg">
             <Routes>
               <Route path="" element={<Home />} />
               <Route path="products" element={<Products />} />
@@ -46,7 +51,7 @@ const App: FunctionComponent = () => {
                 }
               />
             </Routes>
-          </Container>
+          </AppContainer>
         </Router>
       </QueryClientProvider>
     </CurrencyContext.Provider>
