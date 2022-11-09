@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Typography from '@mui/material/Typography'
+import { Link as RouterLink } from 'react-router-dom'
 
 export interface Rating {
   rate: number;
@@ -30,14 +31,14 @@ const Products: FunctionComponent = () => {
 
   if (error) return (<Typography>An error has occurred: {error.message}</Typography>)
 
-  if (!data) return null
-
   return (
     <ul>
       {
-        data.map((row: any) => {
+        data.map((row) => {
           return (
-            <li key={row.id}>{row.title}</li>
+            <li key={row.id}>
+              <RouterLink to={`/products/${row.id}`}>{row.title}</RouterLink>
+            </li>
           )
         })
       }

@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Home from './pages/Home'
 import Products from './pages/Products'
+import Product from './pages/Product'
 import Navbar from './components/Navbar'
 
 const queryClient = new QueryClient()
@@ -25,6 +26,13 @@ const App: FunctionComponent = () => {
           <Routes>
             <Route path="" element={<Home />} />
             <Route path="products" element={<Products />} />
+            <Route path="products/:productId" element={<Product />} />
+            <Route
+              path="*"
+              element={
+                <p>There's nothing here!</p>
+              }
+            />
           </Routes>
         </Container>
       </Router>
