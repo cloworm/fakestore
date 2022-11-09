@@ -78,7 +78,7 @@ const Product: FunctionComponent = () => {
   if (error) return (<Typography>An error has occurred: {error.message}</Typography>)
 
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" component={RouterLink} to="">
+    <Link underline="hover" key="1" color="inherit" component={RouterLink} to="/">
       Home
     </Link>,
     <Link
