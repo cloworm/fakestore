@@ -7,14 +7,17 @@ import {
 } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 import Container from '@mui/material/Container'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Home from './pages/Home'
 import Products from './pages/Products'
 import Navbar from './components/Navbar'
 
+const queryClient = new QueryClient()
+
 const App: FunctionComponent = () => {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <CssBaseline />
       <Router>
         <Navbar />
@@ -25,7 +28,7 @@ const App: FunctionComponent = () => {
           </Routes>
         </Container>
       </Router>
-    </div>
+    </QueryClientProvider>
   )
 }
 
