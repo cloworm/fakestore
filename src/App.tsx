@@ -1,5 +1,4 @@
 import { FunctionComponent, createContext, useState, useMemo } from 'react'
-import './App.css'
 import {
   BrowserRouter as Router,
   Routes,
