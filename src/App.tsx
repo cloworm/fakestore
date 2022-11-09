@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, createContext, useState, useMemo } from 'react'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -16,27 +16,40 @@ import Navbar from './components/Navbar'
 
 const queryClient = new QueryClient()
 
+export const CurrencyContext = createContext<{ currency: string; setCurrency: React.Dispatch<React.SetStateAction<string>>; }>({
+  currency: '',
+  setCurrency: () => { return '' },
+})
+
 const App: FunctionComponent = () => {
+  const [currency, setCurrency] = useState('USD')
+  const value = useMemo(
+    () => ({ currency, setCurrency }), 
+    [currency]
+  )
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <CssBaseline />
-      <Router>
-        <Navbar />
-        <Container maxWidth="lg">
-          <Routes>
-            <Route path="" element={<Home />} />
-            <Route path="products" element={<Products />} />
-            <Route path="products/:productId" element={<Product />} />
-            <Route
-              path="*"
-              element={
-                <p>There's nothing here!</p>
-              }
-            />
-          </Routes>
-        </Container>
-      </Router>
-    </QueryClientProvider>
+    <CurrencyContext.Provider value={value}>
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <Router>
+          <Navbar />
+          <Container maxWidth="lg">
+            <Routes>
+              <Route path="" element={<Home />} />
+              <Route path="products" element={<Products />} />
+              <Route path="products/:productId" element={<Product />} />
+              <Route
+                path="*"
+                element={
+                  <p>There&apos;s nothing here!</p>
+                }
+              />
+            </Routes>
+          </Container>
+        </Router>
+      </QueryClientProvider>
+    </CurrencyContext.Provider>
   )
 }
 
