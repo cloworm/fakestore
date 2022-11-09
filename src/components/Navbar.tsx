@@ -69,8 +69,8 @@ const Navbar: FunctionComponent = () => {
               <NavButton component={RouterLink} variant="text" to="products">Products</NavButton>
             </NavItems>
             <Box>
-              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('USD')} isSelected={ currency === 'USD'}>USD</CurrencyOption>
-              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('EUR')} isSelected={ currency === 'EUR'}>EUR</CurrencyOption>
+              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('USD')} isSelected={currency === 'USD'}>USD</CurrencyOption>
+              <CurrencyOption variant="text" onClick={() => handleCurrencyChange('EUR')} isSelected={currency === 'EUR'}>EUR</CurrencyOption>
             </Box>
           </SpaceBetween>
         </Toolbar>
